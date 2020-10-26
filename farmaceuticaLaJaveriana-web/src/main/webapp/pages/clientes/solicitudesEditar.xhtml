@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:panelGroup layout="block" class="positionCrud mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+        <h:panelGroup layout="block" class="main-content positionCrud" >
+            <!-- CUERPO FORMULARIO -->
+            <h:panelGroup id="panelFormulario" layout="block" class=" positionCrud no-padding mdl-grid justify-content-center">
+                <h:panelGroup layout="block" class=" positionCrud mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--8-col-phone">
+                    <h:panelGroup layout="block" class="no-padding mdl-grid justify-content-center">
+                        <h:panelGroup layout="block" class="text-left mdl-cell mdl-cell--2-col mdl-cell--3-col-tablet mdl-cell--8-col-phone">
+                            <h:outputLabel styleClass="font-size-14p font-bold form-control-label obligatorio" value="Código" for="codigo"/>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class="mdl-cell mdl-cell--4-col mdl-cell--5-col-tablet mdl-cell--8-col-phone">
+                            <h:inputText id="codigo" styleClass="font-size-14p form-control" 
+                                         value="#{solicitudesClienteMB.servicio}"
+                                         autocomplete="off"
+                                         pt:onpaste="return false"
+                                         onkeypress="return soloLetrasNumerosBarraPisoNombreCampo(event)"
+                                         maxlength="200">
+                            </h:inputText>
+                            <h:message id= "mensajeCodigo" styleClass="mensajeValidacion" for="codigo" />
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
+            <!-- FOOTER BUTTONS ACTIONS -->
+            <h:panelGroup layout="block" class="no-padding mdl-grid justify-content-center">
+                <h:panelGroup layout="block" class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--8-col-phone" >
+                    <h:commandButton id="btnCancelar" styleClass="displayNone" action="#{solicitudesClienteMB.enviarCancelar()}" immediate="true" />
+                    <a href="#" onclick="pulsarClickPorId('btnCancelar')" class="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white w100 text-shadow text-responsive btn-back-gray max-width-btn">
+                        <i class="material-icons icon-btn">arrow_back</i>Cancelar
+                    </a>
+                    <h:commandButton id="btnCrear" styleClass="displayNone" />
+                    <a href="#" onclick="pulsarClickPorId('btnCrear')" class="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white w100 text-shadow text-responsive btn-red max-width-btn">
+                        <i class="material-icons icon-btn">save</i> Actualizar
+                    </a>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:panelGroup>
+</ui:composition>

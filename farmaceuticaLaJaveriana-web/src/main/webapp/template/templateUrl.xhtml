@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+        <meta name="description" content="Gestion de ordenes"/>
+        <meta name="author" content="Grupo 1"/>
+        <meta name="keywords" content="La Javeriana"/>
+
+        <!-- TITLE - FAVICON -->
+        <title>Farmaceutica La Javeriana</title>
+        <link rel="icon" type="image/svg+xml" href="#{resource['images/farmacia.svg']}" sizes="any" />
+
+        <!-- Fonts And Icons -->
+        <h:outputStylesheet name="font-mdl.css" library="css"/>
+
+
+        <!-- Animate CSS -->
+        <h:outputStylesheet name="animate.css" library="css"/>
+
+        <!-- Carousel CSS -->
+        <h:outputStylesheet name="owlcarousel.css" library="css"/>
+        <h:outputStylesheet name="owltheme.css" library="css"/>
+
+        <!-- MDL CSS -->
+        <h:outputStylesheet name="material.css" library="css"/>
+        <h:outputStylesheet name="theme-red-mdl.css" library="css"/>
+
+        <!-- Mocassin CSS -->
+        <h:outputStylesheet name="mocassin.css" library="css"/>
+
+        <!-- DialogPolyfill CSS -->
+        <h:outputStylesheet name="dialog-polyfill.css" library="css"/>
+
+        <!-- Select CSS -->
+        <h:outputStylesheet name="select2.min.css" library="css"/>
+
+        <!-- Primefaces Icons CSS -->
+        <h:outputStylesheet name="primeicons.css" library="css" />
+
+        <!-- Flickity Carousel CSS -->
+        <h:outputStylesheet name="carousel-flick.css" library="css"/>
+
+        <!-- Normalize Web Browsers CSS -->
+        <h:outputStylesheet name="normalize.css" library="css"/>
+
+        <!-- Master Edit Only This CSS -->
+        <h:outputStylesheet name="master.css" library="css"/>
+
+        <!-- Jquery JS -->
+        <h:outputScript name="jquery-3.4.1.js" library="js"/>   
+
+        <!-- Date Picker JS -->
+        <h:outputScript name="jquery-ui.js" library="js"/>  
+        <!-- DatePicker CSS -->
+        <h:outputStylesheet name="bootstrap-datepicker.css" library="css"/>
+        <h:outputStylesheet name="jquery.ui.datepicker.css" library="css"/>
+
+
+
+
+    </h:head>
+
+    <h:body class="animsition animated fadeIn" onload="nobackbutton(); datePicker();">
+
+        <div class="modal-backdrop fade #{sesionMB.msj != null ? 'show' : 'displayNone'}"></div>
+        <div id="bloqueoMenu" class="modal-backdrop fade displayNone" style="z-index:2;background-color: rgba(0,0,0,.5)"></div>
+        <div class="limiter">
+            <h:form id="form" prependId="false" >
+                <ui:include  src="/pages/modal/modalNotification.xhtml"/>            
+                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                    <header class="mdl-layout__header">
+                        <div class="mdl-layout__header-row bar">
+                            <div class="mdl-grid wrapper ">
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+
+
+                                    <h:commandButton id="idCerrarSesion" styleClass="displayNone" immediate="true" action="#{sesionMB.cerrarSesion()}"/>
+                                    <a href="#" onclick="pulsarClickPorId('idCerrarSesion')" title="Cerrar Sesión"
+                                       class="mdl-button mdl-js-button mdl-button--icon logout">
+                                        <i class="material-icons text-shadow">cancel</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lineaTituloTemplatePages"></div>
+                    </header>
+
+                    <input type="checkbox" id="sidebar-btn" class="sidebar-btn"/>
+                    <label onclick="limiterResponsive()" for="sidebar-btn"></label>
+
+                    <ul class="sidebar" style="top: 100px !important;">
+                        <li onclick="pulsarClickPorId('idSolicitudesCliente')"><h:graphicImage library="images" name="icons-SVG/icon49.svg" class="image-menu-lateral"/>Mis solicitudes</li>
+                        <li onclick="pulsarClickPorId('idEstadisticas')"><h:graphicImage library="images" name="icons-SVG/icon52.svg" class="image-menu-lateral"/>Estadísticas</li>
+
+
+
+                        <h:commandButton id="idSolicitudesCliente" value="Mis solicitudes" styleClass="displayNone" action="#{menuMB.irSolicitudesCotizaciones()}"/>
+                        <h:commandButton id="idEstadisticas" value="Estadísticas" styleClass="displayNone" action="#{menuMB.irSolicitudesCotizaciones()}"/>
+                    </ul>
+
+
+                    <div class="content height-100vh fondoCruds positionCrud">
+                        <ui:insert name="content">
+
+                        </ui:insert>
+                    </div>
+                </div>
+                <div class="footer-general">
+                    <h:panelGroup id="login-Footer" >
+                        <center>
+                            <h:graphicImage library="images" name="farmacia.svg" class="imageFo"/>
+                            <div class="versionProyecto">V1.0</div>
+                        </center>
+                    </h:panelGroup>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+
+    <!-- Select y MultiSelect JS -->
+
+    <h:outputScript name="select2.js" library="js"/>
+    <h:outputScript name="multiselect.js" library="js"/>
+    <h:outputScript name="i18n/es.js" library="js"/>
+
+
+
+    <!-- Carousel JS -->
+    <h:outputScript name="owlcarousel.js" library="js"/>
+
+    <!-- MDL JS -->
+    <h:outputScript name="material.js" library="js"/>
+
+    <h:outputScript name="main.js" library="js"/>
+
+    <!-- Mocassin JS -->
+    <h:outputScript name="mocassin.js" library="js"/>
+
+    <!-- File Upload JS -->
+    <h:outputScript name="jquery.ui.widget.js" library="js"/>
+    <h:outputScript name="jquery.fileupload.js" library="js"/> 
+
+
+    <!-- DialogPolyfill JS -->
+    <h:outputScript name="dialog-polyfill.js" library="js"/>
+
+    <!-- Charts JS -->
+    <h:outputScript name="chartjs/Chart.bundle.min.js" library="plugins"/>
+
+    <!-- Flickity Carousel JS -->
+    <h:outputScript name="carousel-flick.js" library="js"/>
+
+    <!-- Main Edit Only This JS -->
+    <h:outputScript name="main.js" library="js"/>
+</html>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template/templateUrl.xhtml">
+
+    <ui:define name="content">
+        <div class="mdl-grid" style="overflow: scroll;height: 500px;padding-bottom: 50px;">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                <div class="mdl-grid">
+                    <!--RESUMEN-->
+                    <p:repeat value="#{['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88']}"
+                              var="img" >
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+                            <div class="efecto-menu">
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                                    <h:graphicImage library="images" name="icons-SVG/icon#{img}.svg" class="image-menu"/>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                                    <h:outputText styleClass="font-bold" value="Icon #{img}" />
+                                </div>
+                            </div>
+                        </div>
+                    </p:repeat>                
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

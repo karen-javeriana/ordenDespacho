@@ -1,0 +1,109 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:panelGroup id="modalOverLoadException" layout="block" class="overLoad displayNone">
+        <h:panelGroup id="modalException" layout="block" class="mdl-dialog modalNotification indexarContenido">
+            <div class="mdl-dialog__title row no-padding col-12">
+                <h:panelGroup id="idTituloModalException" layout="block" class="col-10">
+                    <h:panelGroup layout="block" rendered="#{excepcionMB.modalTypeNotification eq 'ERROR'}">
+                        <h5 id="staticModalLabel" class="no-margin font-bold font-size-20p text-shadow title-modal">!Error #{excepcionMB.camposErrorDto.tipoError.type}!</h5>
+                    </h:panelGroup>
+                    <hr class="linea-roja-modal no-top-margins"/>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="col-2">
+                    <a href="#" onclick="closemodal()" title="Cerrar"
+                       class="font-size-small close">
+                        Cerrar
+                    </a>
+                </h:panelGroup>
+            </div>
+            <h:panelGroup layout="block" rendered="#{excepcionMB.modalTypeNotification eq 'ERROR'}">
+                <div class=" no-margin no-padding row">
+                    <div class="col-2 col-md-1 col-lg-1 center-ver-hor mdl-dialog__content">
+                        <i class="iconoModal material-icons">build</i>
+                    </div>
+                    <div class="col-10 col-md-11 col-lg-11 center-ver">
+                        <p class="no-margin">
+                            <h:outputText value="#{excepcionMB.camposErrorDto.descripcion}"/>
+                        </p>
+                    </div>
+                </div>
+                <input type="checkbox" name="accordeon-exception" class="accordeon-checkbox" id="accordeon-exception" />
+                <div class="center-ver-hor margin-top-max-10p">
+                    <label for="accordeon-exception" class="moreLess accordeon-title-label">
+                        <i onclick="lessModalNotification()" class="more btn-acordion material-icons">expand_more</i>  
+                        <i onclick="moreModalNotification()" class="less btn-acordion material-icons displayNone">expand_less</i>  
+                    </label>
+                </div>
+                <div class="accordeon-content margin-top-max-10p">
+                    <div class="d-flex justify-content-start">
+                        <div class="col-12 modalNotification-content">
+                            <div class="d-flex justify-content-start">
+                                <h:outputLabel class="col-4 col-md-2 col-lg-2 labelModalDetail" 
+                                               value="Modulo:">
+                                </h:outputLabel>
+                                <h:outputText class="col-8 col-md-10 col-lg-10 outputTextModalDetail" 
+                                              value="#{excepcionMB.camposErrorDto.moduloError}">
+                                </h:outputText>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <h:outputLabel class="col-4 col-md-2 col-lg-2 labelModalDetail" 
+                                               value="Tipo de error:">
+                                </h:outputLabel>
+                                <h:outputText class="col-8 col-md-10 col-lg-10 outputTextModalDetail" 
+                                              value="#{excepcionMB.camposErrorDto.tipoError.type}">
+                                </h:outputText>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <h:outputLabel class="col-4 col-md-2 col-lg-2 labelModalDetail" 
+                                               value="Excepción:">
+                                </h:outputLabel>
+                                <h:outputText class="col-8 col-md-10 col-lg-10 outputTextModalDetail" 
+                                              value="#{excepcionMB.camposErrorDto.nombreExcepcion}">
+                                </h:outputText>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <h:outputLabel class="col-4 col-md-2 col-lg-2 labelModalDetail" 
+                                               value="Clase:">
+                                </h:outputLabel>
+                                <h:outputText class="col-8 col-md-10 col-lg-10 outputTextModalDetail" 
+                                              value="#{excepcionMB.camposErrorDto.archivoError}">
+                                </h:outputText>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <h:outputLabel class="col-4 col-md-2 col-lg-2 labelModalDetail" 
+                                               value="Método:">
+                                </h:outputLabel>
+                                <h:outputText class="col-8 col-md-10 col-lg-10 outputTextModalDetail" 
+                                              value="#{excepcionMB.camposErrorDto.pasoProceso}">
+                                </h:outputText>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <h:outputLabel class="col-4 col-md-2 col-lg-2 labelModalDetail" 
+                                               value="Línea:">
+                                </h:outputLabel>
+                                <h:outputText class="col-8 col-md-10 col-lg-10 outputTextModalDetail" 
+                                              value="#{excepcionMB.camposErrorDto.lineaError}">
+                                </h:outputText>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <h:outputLabel class="col-4 col-md-2 col-lg-2 labelModalDetail" 
+                                               value="Detalle:">
+                                </h:outputLabel>
+                                <h:inputTextarea styleClass="font-size-14p form-control form-control-modify" cols="6" rows="10"
+                                                 value="#{excepcionMB.formatearJson(excepcionMB.camposErrorDto.detalleError)}"
+                                                 readonly="true" style="border-style: none; color: inherit; opacity: 1;">
+                                </h:inputTextarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:panelGroup>
+</ui:composition>

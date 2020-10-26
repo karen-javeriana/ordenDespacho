@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" >
+
+    <h:head>
+        <!-- METADATA -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+        <meta name="description" content="Gestion de ordenes"/>
+        <meta name="author" content="Grupo 1"/>
+        <meta name="keywords" content="La Javeriana"/>
+
+        <!-- TITLE - FAVICON -->
+        <title>Farmaceutica La Javeriana</title>
+        <link rel="icon" type="image/svg+xml" href="#{resource['images/farmaceutica.svg']}" sizes="any" />
+
+        <!-- Fonts And Icons -->
+        <h:outputStylesheet name="font-mdl.css" library="css"/>
+
+        <!-- DatePicker CSS -->
+        <h:outputStylesheet name="bootstrap-datepicker.css" library="css"/>
+
+        <!-- Animate CSS -->
+        <h:outputStylesheet name="animate.css" library="css"/>
+
+        <!-- Carousel CSS -->
+        <h:outputStylesheet name="owlcarousel.css" library="css"/>
+        <h:outputStylesheet name="owltheme.css" library="css"/>
+
+        <!-- MDL CSS -->
+        <h:outputStylesheet name="material.css" library="css"/>
+        <h:outputStylesheet name="theme-red-mdl.css" library="css"/>
+
+        <!-- Master Edit Only This CSS -->
+        <h:outputStylesheet name="master.css" library="css"/>
+
+        
+        
+
+        <!-- Jquery JS -->
+        <h:outputScript name="jquery-3.4.1.js" library="js"/>
+    </h:head>   
+
+    <h:body onload="mostrarMensajeError500()" class="animsition animated fadeIn">
+        <h:form id="form" prependId="false" >
+            <div class="mdl-grid justify-content-center fondoError height-100vh demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                    <div class="mdl-grid justify-content-center">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                            <div id="collapse500" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div id="error500" class="error500Xhtml scrollbar"></div>
+                            </div>
+                        </div>
+
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                            <h:graphicImage library="images" name="error500.svg" class="imageError"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-general">
+                    <h:panelGroup id="login-Footer" >
+                        <center>
+                            <h:graphicImage library="images" name="Claro-blanco.svg" class="imageFo"/>
+                            <div class="versionProyecto">#{sesionMB.versionProyecto}</div>
+                            <h:outputText class="versionProyecto displayNone" value="#{sesionMB.fechaVProyecto}"/>
+                        </center>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </h:form>
+
+        <!-- Select y MultiSelect JS -->
+        <h:outputScript name="select2.js" library="js"/>
+        <h:outputScript name="multiselect.js" library="js"/>
+        <h:outputScript name="i18n/es.js" library="js"/>
+
+        <!-- Date Picker JS -->
+        <h:outputScript name="bootstrap-datepicker.js" library="js"/>
+        <h:outputScript name="bootstrap-datepicker.es.js" library="js"/>   
+
+        <!-- Carousel JS -->
+        <h:outputScript name="owlcarousel.js" library="js"/>
+
+        <!-- MDL JS -->
+        <h:outputScript name="material.js" library="js"/>
+
+        <!-- Main Edit Only This JS -->
+        <h:outputScript name="main.js" library="js"/>
+    </h:body>
+</ui:composition>

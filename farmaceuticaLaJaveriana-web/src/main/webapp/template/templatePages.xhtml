@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>        
+        <!-- METADATA -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+        <meta name="description" content="Gestion de ordenes"/>
+        <meta name="author" content="Grupo 1"/>
+        <meta name="keywords" content="La Javeriana"/>
+
+        <!-- TITLE - FAVICON -->
+        <title>Farmaceutica La Javeriana</title>
+        <link rel="icon" type="image/svg+xml" href="#{resource['images/favicon.svg']}" sizes="any" />
+
+        <!-- Fonts And Icons -->
+        <h:outputStylesheet name="font-mdl.css" library="css"/>
+
+        <!-- DatePicker CSS -->
+        <h:outputStylesheet name="bootstrap-datepicker.css" library="css"/>
+
+        <!-- Animate CSS -->
+        <h:outputStylesheet name="animate.css" library="css"/>
+
+        <!-- Carousel CSS -->
+        <h:outputStylesheet name="owlcarousel.css" library="css"/>
+        <h:outputStylesheet name="owltheme.css" library="css"/>
+
+        <!-- MDL CSS -->
+        <h:outputStylesheet name="material.css" library="css"/>
+        <h:outputStylesheet name="theme-red-mdl.css" library="css"/>
+
+
+
+
+        <!-- DialogPolyfill CSS -->
+        <h:outputStylesheet name="dialog-polyfill.css" library="css"/>
+
+        <!-- Select CSS -->
+        <h:outputStylesheet name="select2.min.css" library="css"/>
+
+        <!-- Primefaces Icons CSS -->
+        <h:outputStylesheet name="primeicons.css" library="css" />
+
+
+        <!-- Flickity Carousel CSS -->
+        <h:outputStylesheet name="carousel-flick.css" library="css"/>
+
+        <!-- Normalize Web Browsers CSS -->
+        <h:outputStylesheet name="normalize.css" library="css"/>
+
+        <!-- Master Edit Only This CSS -->
+        <h:outputStylesheet name="master.css" library="css"/>
+
+
+
+
+        <!-- Jquery JS -->
+        <h:outputScript name="jquery-3.4.1.js" library="js"/>
+
+        <script type="text/javascript">
+            function disableBackButton()
+            {
+                window.history.forward();
+            }
+            setTimeout("disableBackButton()", 0);
+            $(document).ready(function () {
+                disableBackButton();
+            });
+        </script>
+    </h:head>
+
+    <h:body id="templatePages" class="animsition animated fadeIn #{consultaExpressMB.modalIntegracion ? 'noscroll' : ''}
+            #{consultaExpressMB.modalConsulta ? 'noscroll' : ''}" onload="loadBanner();">
+       
+
+        <ui:include src="/pages/menu/menuLateral.xhtml" />
+
+
+    </h:body>
+
+    <!-- Select y MultiSelect JS -->
+
+    <h:outputScript name="select2.js" library="js"/>
+    <h:outputScript name="multiselect.js" library="js"/>
+    <h:outputScript name="i18n/es.js" library="js"/>
+
+    <!-- Date Picker JS -->
+    <h:outputScript name="bootstrap-datepicker.js" library="js"/>
+    <h:outputScript name="bootstrap-datepicker.es.js" library="js"/>   
+
+    <!-- Carousel JS -->
+    <h:outputScript name="owlcarousel.js" library="js"/>
+
+    <!-- MDL JS -->
+    <h:outputScript name="material.js" library="js"/>
+
+    <h:outputScript name="main.js" library="js"/>
+
+
+    <!-- File Upload JS -->
+    <h:outputScript name="jquery.ui.widget.js" library="js"/>
+    <h:outputScript name="jquery.fileupload.js" library="js"/>   
+
+
+    <!-- DialogPolyfill JS -->
+    <h:outputScript name="dialog-polyfill.js" library="js"/>
+
+    <!-- Charts JS -->
+    <h:outputScript name="chartjs/Chart.bundle.min.js" library="plugins"/>
+
+    <!-- Flickity Carousel JS -->
+    <h:outputScript name="carousel-flick.js" library="js"/>
+
+    <!-- Main Edit Only This JS -->
+    <h:outputScript name="main.js" library="js"/>
+</html>

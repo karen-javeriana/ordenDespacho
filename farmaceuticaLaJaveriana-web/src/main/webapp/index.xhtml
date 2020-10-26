@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/template/homeTemplateLogin.xhtml" >
+    <ui:define name="content">
+        <div id="blurL3"></div>
+        <div id="login-container3" class="no-margin mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+            <div class="mdl-grid no-padding justify-content-center vertical-center" >
+                <div class="no-margin mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--8-col-phone">
+                    <div class="mdl-grid no-padding justify-content-center">
+                        <div class="demo-card-wide mdl-card mdl-shadow--4dp" style="background: transparent !important">
+                            <div id="loginV3" class="mdl-grid no-padding" style="background: #fff;">
+                                <div class="mdl-cell no-margin mdl-cell--6-col mdl-cell--hide-phone mdl-cell--hide-tablet margin-min20px">
+                                    <ul class="textTitleLogin hidden">
+                                        <li>G</li>
+                                        <li>e</li>
+                                        <li>s</li>
+                                        <li>t</li>
+                                        <li>i</li>
+                                        <li>ó</li>
+                                        <li>n</li>
+                                        <li></li>
+                                        <li>O</li>
+                                        <li>r</li>
+                                        <li>d</li>
+                                        <li>e</li>
+                                        <li>n</li>
+                                        <li>e</li>
+                                        <li>s</li>
+                                        <li></li>
+                                        <li>D</li>
+                                        <li>e</li>
+                                        <li>s</li>
+                                        <li>p</li>
+                                        <li>a</li>
+                                        <li>c</li>
+                                        <li>h</li>
+                                        <li>o</li>
+                                    </ul>
+                                    <h:graphicImage library="images" name="proveedor.jpg" style="width: 100%;height: 100%;" styleClass="mdl-shadow--2dp"/>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--8-col-phone">
+                                    <div class="mdl-card__supporting-text mdl-grid justify-content-center">
+                                        <div id="card-heading" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+                                            <!--login form-->
+                                            <h:graphicImage library="images" name="logo3.jpg" style="width: 100%;height: auto;"/>
+                                            <div class="pad-top-150 fontBlack text-center">
+                                                <b class="titulolgn">Bienvenido</b>
+                                            </div>
+                                        </div>
+                                        <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+                                            <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="USUARIO:"/>
+                                            <h:inputText class="mdl-textfield__input text-responsive" id="username"
+                                                         value="#{sesionMB.usuarioLogin}"/>
+                                        </div>
+                                        <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+                                            <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="PASSWORD:" />
+                                            <h:inputSecret class="mdl-textfield__input text-responsive"  id="password" 
+                                                           value="#{sesionMB.passLogin}"/>
+                                            <label>
+                                                <input id="show_password" type="checkbox" >
+                                                    <h:graphicImage id="iconPassView" styleClass="image-login" library="images" name="icons-SVG/icon60.svg"/>
+                                                    <h:graphicImage id="iconPassNotView" styleClass="image-login displayNone" library="images" name="icons-SVG/icon59.svg"/>
+                                                </input> 
+                                            </label>
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                                            <h:commandButton id="login-button" value="Ingresar" style="min-width: 300px"
+                                                             styleClass="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white text-shadow text-responsive btn-red"                                             
+                                                             action="#{sesionMB.iniciarSesion()}">
+                                            </h:commandButton>
+                                            <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="¿Aún no tienes cuenta?" />
+                                            <a href="https://www.w3schools.com" style="font-size: 12px;color:#000099;">Registrate Aquí</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border text-center no-padding" style="background: #000;">
+                                <div class="versionProyecto">V1.0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

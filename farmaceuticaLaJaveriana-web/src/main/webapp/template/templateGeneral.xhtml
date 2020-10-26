@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <!-- METADATA -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+        <meta name="description" content="Gestion de ordenes"/>
+        <meta name="author" content="Grupo 1"/>
+        <meta name="keywords" content="La Javeriana"/>
+
+        <!-- TITLE - FAVICON -->
+        <title>Farmaceutica La Javeriana</title>
+        <link rel="icon" type="image/svg+xml" href="#{resource['images/farmaceutica.svg']}" sizes="any" />
+
+        <!-- Fonts And Icons -->
+        <h:outputStylesheet name="font-mdl.css" library="css"/>
+
+        <!-- DatePicker CSS -->
+        <h:outputStylesheet name="bootstrap-datepicker.css" library="css"/>
+
+        <!-- Animate CSS -->
+        <h:outputStylesheet name="animate.css" library="css"/>
+
+        <!-- Carousel CSS -->
+        <h:outputStylesheet name="owlcarousel.css" library="css"/>
+        <h:outputStylesheet name="owltheme.css" library="css"/>
+
+        <!-- MDL CSS -->
+        <h:outputStylesheet name="material.css" library="css"/>
+        <h:outputStylesheet name="theme-red-mdl.css" library="css"/>
+
+
+
+
+        <!-- DialogPolyfill CSS -->
+        <h:outputStylesheet name="dialog-polyfill.css" library="css"/>
+
+        <!-- Select CSS -->
+        <h:outputStylesheet name="select2.min.css" library="css"/>
+
+        <!-- Primefaces Icons CSS -->
+        <h:outputStylesheet name="primeicons.css" library="css" />
+
+
+        <!-- Flickity Carousel CSS -->
+        <h:outputStylesheet name="carousel-flick.css" library="css"/>
+
+        <!-- Normalize Web Browsers CSS -->
+        <h:outputStylesheet name="normalize.css" library="css"/>
+
+        <!-- Master Edit Only This CSS -->
+        <h:outputStylesheet name="master.css" library="css"/>
+
+        <!-- Jquery JS -->
+        <h:outputScript name="jquery-3.4.1.js" library="js"/>
+
+        <h:outputScript name="jquery/jquery.js" library="primefaces"/>
+
+        <script type="text/javascript">
+            function disableBackButton()
+            {
+                window.history.forward();
+            }
+            setTimeout("disableBackButton()", 0);
+            $(document).ready(function () {
+                disableBackButton();
+            });
+        </script>
+    </h:head>
+
+    <h:body class="animsition animated fadeIn" >
+        <div class="limiter">
+            <div class="margin-80">
+                <h:form id="form" prependId="false" >
+                    <ui:include src="/pages/modal/modalNotification.xhtml"/>
+                    <ui:include src="/pages/modal/modalExcepcion.xhtml"/>
+                    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                        <header class="mdl-layout__header">
+                            <div class="mdl-layout__header-row bar">
+                                <div class="mdl-grid wrapper">
+                                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+
+                                        <h:commandButton id="idCerrarSesion" styleClass="displayNone" immediate="true" action="#{sesionMB.cerrarSesion()}" />
+                                        <a href="#" id="menu" onclick="pulsarClickPorId('idCerrarSesion'); eliminarCookies();"
+                                           class="mdl-button mdl-js-button mdl-button--icon logout">
+                                            <i class="material-icons">cancel</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lineaTituloTemplatePages"></div>
+
+                            <!-- Top Banner gray -->
+                            <div class="hiddenMovil mdl-layout__tab-bar-desktop mdl-js-ripple-effect">
+                                <div class="mdl-grid no-padding" style="padding: 5px 0px 0px 0px;">
+                                    <div style="line-height: 20px;margin-left: -90px;" 
+                                         class="margin-info-bar mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-right">                       
+                                        <div class="mdl-grid no-padding" style="margin-top: 8px;">                        
+                                            <div style="margin-top: -5px;" class="no-margin mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                                                <div class="labelMDL mdl-textfield__label font-size-15p font-bold text-shadow text-red" >
+                                                    <h:graphicImage library="images" name="icons-SVG/icon67.svg" style="width: 23px; height: 23px;margin-right: -8px;"/>
+                                                    <span class="font-normal text-black">#{sesionMB.sesion.nombre}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div>
+                            <label for="sidebar-btn" onclick="irCrudMenu()"/>
+                            <h:commandButton id="idCrudMenu" styleClass="displayNone" action="#{menuMB.irMenuCrud()}"/>
+                        </div>
+
+                        <div class="mdl-grid no-padding">
+                            <div class="no-margin mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+                                <div class="mdl-grid no-padding">
+                                    <ui:insert name="contentGeneral">
+
+                                    </ui:insert>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer-general">
+                            <h:panelGroup id="login-Footer" >
+                                <center>
+                                    <h:graphicImage library="images" name="farmacia.svg" class="imageFo"/>
+                                    <div class="versionProyecto">V1.0</div>
+                                </center>
+                            </h:panelGroup>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+
+        </div>
+
+
+    </h:body>
+
+    <!-- Select y MultiSelect JS -->
+    <h:outputScript name="select2.js" library="js"/>
+    <h:outputScript name="multiselect.js" library="js"/>
+    <h:outputScript name="i18n/es.js" library="js"/>
+
+    <!-- Date Picker JS -->
+    <h:outputScript name="bootstrap-datepicker.js" library="js"/>
+    <h:outputScript name="bootstrap-datepicker.es.js" library="js"/>   
+
+    <!-- Carousel JS -->
+    <h:outputScript name="owlcarousel.js" library="js"/>
+
+    <!-- MDL JS -->
+    <h:outputScript name="material.js" library="js"/>
+
+    <!-- Charts JS -->
+    <h:outputScript name="chartjs/Chart.bundle.min.js" library="plugins"/>
+
+    <!-- Flickity Carousel JS -->
+    <h:outputScript name="carousel-flick.js" library="js"/>
+
+    <!-- Main Edit Only This JS -->
+    <h:outputScript name="main.js" library="js"/>
+</html>

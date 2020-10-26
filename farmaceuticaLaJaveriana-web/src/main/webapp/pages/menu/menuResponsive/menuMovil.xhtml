@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:panelGroup id="menuGeneralMovil" class="infoClienteCuentaMovil w100">
+        <input type="checkbox" id="sidebar-btn" class="sidebar-btn #{sesionMB.sesion.activarBtnMenu ? '' : 'displayNone'}"/>
+        <label id="btnSideMovil" onclick="verMenu();" style="z-index: 6;" for="sidebar-btn"></label>
+        <div id="tituloMenuMovil" class="tituloMenuMovil displayNone animated fadeIn">
+            <div class="logoClaroMovil">
+                <h:graphicImage library="images" name="farmacia.svg" styleClass=""/>
+            </div>
+            
+            <h:graphicImage library="images" name="icons-SVG/icon67.svg" styleClass="image-menu-lateral"/>
+            <h:outputText value="#{sesionMB.sesion.nombre}" styleClass="image-menu-lateral text-uppercase"/>
+        </div>
+        
+
+        <div id="fondoMenuResp" onclick="pulsarClickPorId('btnSideMovil');" class="animated fadeIn fondoMenuResp height-100vh positionFixed"></div>
+    </h:panelGroup>
+
+</ui:composition>

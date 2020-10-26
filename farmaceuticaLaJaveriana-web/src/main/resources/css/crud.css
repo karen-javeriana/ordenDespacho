@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3/06/2020, 08:20:10 AM
+    Author     : 9557
+*/
+
+.ui-state-default, .ui-resizable-column, .ui-filter-column {
+    border: 1px solid #a8a8a8;
+    background: #da291c !important;
+    color: white !important;
+}
+
+
+
