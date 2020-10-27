@@ -7,167 +7,90 @@ package com.javeriana.ejb.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
- * Entidad de la tabla solicitud cotizacion
- * @author Karen Calderon R
+ *
+ * @author Asus
  */
-@EqualsAndHashCode(of = "id", callSuper = false)
-@Builder
 @Entity
 @Table(name = "solicitud_cotizacion")
-@NamedQueries({
-    @NamedQuery(name = "SolicitudCotizacion.consultarPorCliente",
-            query = "SELECT c FROM SolicitudCotizacion c")
-
-})
+@XmlRootElement
 public class SolicitudCotizacion implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_solicitud_cotizacion")
-    @SequenceGenerator(name = "solicitud_cotizacion_sq",
-            sequenceName = "solicitud_cotizacion_sq", initialValue = 1,
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "solicitud_cotizacion_sq")
-    private Long id;
-
-    @Size(max = 50)
-    @Column(name = "numero_orden")
-    private Long numeroOrden;
-
-    @Size(max = 50)
-    @Column(name = "id_tipo_envio")
-    private Long idTipoEnvio;
-
-    @Size(max = 50)
-    @Column(name = "id_estado_solicitud")
-    private Long idEstadoSolicitud;
-
-    @Column(name = "direccion")
-    private String direccion;
-
-    @Column(name = "codigo_ciudad_origen")
-    private String codigoCiudadOrigen;
-
-    @Column(name = "ciudad_codigo_destino")
-    private String ciudadCodigoDestino;
-
-    @Size(max = 50)
-    @Column(name = "numero_documento_cliente")
-    private Long numeroDocumentoCliente;
-
-    @Temporal(TemporalType.TIMESTAMP)
+    private Integer idSolicitudCotizacion;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_creacion")
+    @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
-
-    @Temporal(TemporalType.TIMESTAMP)
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_finalizacion_proveedor")
+    @Temporal(TemporalType.DATE)
     private Date fechaFinalizacionProveedor;
-
-    @Temporal(TemporalType.TIMESTAMP)
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_finalizacion_cliente")
+    @Temporal(TemporalType.DATE)
     private Date fechaFinalizacionCliente;
-
-    public SolicitudCotizacion(Long id, Long numeroOrden, Long idTipoEnvio, Long idEstadoSolicitud, String direccion, String codigoCiudadOrigen, String ciudadCodigoDestino, Long numeroDocumentoCliente, Date fechaCreacion, Date fechaFinalizacionProveedor, Date fechaFinalizacionCliente, Double peso) {
-        this.id = id;
-        this.numeroOrden = numeroOrden;
-        this.idTipoEnvio = idTipoEnvio;
-        this.idEstadoSolicitud = idEstadoSolicitud;
-        this.direccion = direccion;
-        this.codigoCiudadOrigen = codigoCiudadOrigen;
-        this.ciudadCodigoDestino = ciudadCodigoDestino;
-        this.numeroDocumentoCliente = numeroDocumentoCliente;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaFinalizacionProveedor = fechaFinalizacionProveedor;
-        this.fechaFinalizacionCliente = fechaFinalizacionCliente;
-        this.peso = peso;
-    }
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "numero_orden")
+    private int numeroOrden;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "peso")
+    private float peso;
 
     public SolicitudCotizacion() {
     }
 
-    @Column(name = "peso")
-    private Double peso;
-
-    public Long getId() {
-        return id;
+    public SolicitudCotizacion(Integer idSolicitudCotizacion) {
+        this.idSolicitudCotizacion = idSolicitudCotizacion;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getNumeroOrden() {
-        return numeroOrden;
-    }
-
-    public void setNumeroOrden(Long numeroOrden) {
+    public SolicitudCotizacion(Integer idSolicitudCotizacion, Date fechaCreacion, Date fechaFinalizacionProveedor, Date fechaFinalizacionCliente, int numeroOrden, float peso) {
+        this.idSolicitudCotizacion = idSolicitudCotizacion;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaFinalizacionProveedor = fechaFinalizacionProveedor;
+        this.fechaFinalizacionCliente = fechaFinalizacionCliente;
         this.numeroOrden = numeroOrden;
+        this.peso = peso;
     }
 
-    public Long getIdTipoEnvio() {
-        return idTipoEnvio;
+    public Integer getIdSolicitudCotizacion() {
+        return idSolicitudCotizacion;
     }
 
-    public void setIdTipoEnvio(Long idTipoEnvio) {
-        this.idTipoEnvio = idTipoEnvio;
-    }
-
-    public Long getIdEstadoSolicitud() {
-        return idEstadoSolicitud;
-    }
-
-    public void setIdEstadoSolicitud(Long idEstadoSolicitud) {
-        this.idEstadoSolicitud = idEstadoSolicitud;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCodigoCiudadOrigen() {
-        return codigoCiudadOrigen;
-    }
-
-    public void setCodigoCiudadOrigen(String codigoCiudadOrigen) {
-        this.codigoCiudadOrigen = codigoCiudadOrigen;
-    }
-
-    public String getCiudadCodigoDestino() {
-        return ciudadCodigoDestino;
-    }
-
-    public void setCiudadCodigoDestino(String ciudadCodigoDestino) {
-        this.ciudadCodigoDestino = ciudadCodigoDestino;
-    }
-
-    public Long getNumeroDocumentoCliente() {
-        return numeroDocumentoCliente;
-    }
-
-    public void setNumeroDocumentoCliente(Long numeroDocumentoCliente) {
-        this.numeroDocumentoCliente = numeroDocumentoCliente;
+    public void setIdSolicitudCotizacion(Integer idSolicitudCotizacion) {
+        this.idSolicitudCotizacion = idSolicitudCotizacion;
     }
 
     public Date getFechaCreacion() {
@@ -194,12 +117,45 @@ public class SolicitudCotizacion implements Serializable {
         this.fechaFinalizacionCliente = fechaFinalizacionCliente;
     }
 
-    public Double getPeso() {
+    public int getNumeroOrden() {
+        return numeroOrden;
+    }
+
+    public void setNumeroOrden(int numeroOrden) {
+        this.numeroOrden = numeroOrden;
+    }
+
+    public float getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idSolicitudCotizacion != null ? idSolicitudCotizacion.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SolicitudCotizacion)) {
+            return false;
+        }
+        SolicitudCotizacion other = (SolicitudCotizacion) object;
+        if ((this.idSolicitudCotizacion == null && other.idSolicitudCotizacion != null) || (this.idSolicitudCotizacion != null && !this.idSolicitudCotizacion.equals(other.idSolicitudCotizacion))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.javeriana.ejb.entidades.SolicitudCotizacion[ idSolicitudCotizacion=" + idSolicitudCotizacion + " ]";
     }
 
 }

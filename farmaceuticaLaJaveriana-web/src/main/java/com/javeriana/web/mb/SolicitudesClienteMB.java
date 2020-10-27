@@ -3,10 +3,13 @@
  */
 package com.javeriana.web.mb;
 
+import com.javeriana.ejb.entidades.SolicitudCotizacionManual;
 import com.javeriana.ejb.enumerados.ESeveridadMensaje;
+import com.javeriana.ejb.service.impl.SolicitudCotizacionSBLocal;
 import com.javeriana.web.utilidades.Util;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -17,7 +20,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name = "solicitudesClienteMB")
 @ViewScoped
-public class SolicitudesClienteMB implements Serializable {
+public class SolicitudesClienteMB extends BaseMB<SolicitudCotizacionManual> implements Serializable {
 
     //private ILogAuditoriaDao logAuditoriaDao;
     //private List<LogAuditoria> showTableLogAuditoria;
@@ -25,6 +28,9 @@ public class SolicitudesClienteMB implements Serializable {
     private String servicio;
 
     private String fase;
+
+    @EJB(beanName = "BeanNameSolicitudesSB")
+    private SolicitudCotizacionSBLocal solicitudSBLocal;
 
     private final String pattern_DD_MM_YYY_HH_MM_AAA = "dd/MM/yyyy  hh:mm aaa";
     private final String pattern_DD_MM_YY = "dd/MM/yyyy";
@@ -145,9 +151,9 @@ public class SolicitudesClienteMB implements Serializable {
 //            Util.showModalError(ex, MODULO);
 //        }
 //    }
-    public void limpiar() {
+    public void limpiar() throws Exception {
         Util.guardarNotificacionUsuarioSesion(null, Util.getSeveridadMensaje(ESeveridadMensaje.DEFAULT));
-
+        solicitudSBLocal.getFilterByDate();
         this.servicio = null;
         //showTableLogAuditoria = null;
         // setObject(new LogAuditoria());
@@ -167,6 +173,16 @@ public class SolicitudesClienteMB implements Serializable {
 
     public void setFase(String fase) {
         this.fase = fase;
+    }
+
+    @Override
+    public void processComplete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isValid() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

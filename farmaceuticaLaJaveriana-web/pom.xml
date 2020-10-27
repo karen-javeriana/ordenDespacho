@@ -20,7 +20,7 @@
     </properties>
     
     <dependencies>
-       <dependency>
+        <dependency>
             <groupId>com.javeriana</groupId>
             <artifactId>farmaceuticaLaJaveriana-ejb</artifactId>
             <version>1.0</version>
