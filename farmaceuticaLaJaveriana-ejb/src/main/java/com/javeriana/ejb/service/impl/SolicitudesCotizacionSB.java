@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.javeriana.ejb.service;
+package com.javeriana.ejb.service.impl;
 
 import com.javeriana.ejb.dao.impl.ISolicitudCotizacionDao;
 import com.javeriana.ejb.entidades.SolicitudCotizacionManual;
-import com.javeriana.ejb.service.impl.SolicitudCotizacionSBLocal;
+import com.javeriana.ejb.service.SolicitudCotizacionSBLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

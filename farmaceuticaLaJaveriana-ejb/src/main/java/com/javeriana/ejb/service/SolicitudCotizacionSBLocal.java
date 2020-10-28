@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.javeriana.ejb.service.impl;
+package com.javeriana.ejb.service;
 
 import com.javeriana.ejb.entidades.SolicitudCotizacionManual;
 import java.util.List;

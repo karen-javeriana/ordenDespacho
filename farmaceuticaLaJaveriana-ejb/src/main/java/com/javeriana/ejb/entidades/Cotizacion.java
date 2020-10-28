@@ -39,23 +39,24 @@ public class Cotizacion implements Serializable {
     @NotNull
     @Column(name = "id_cotizacion")
     private Integer idCotizacion;
+
     @Column(name = "numero_cotizacion")
     private Integer numeroCotizacion;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @Column(name = "valor")
     private Float valor;
-    @JoinColumn(name = "id_estado_cotizacion", referencedColumnName = "id_estado_cotizacion")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private EstadoCotizacion idEstadoCotizacion;
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Proveedor idProveedor;
-    @JoinColumn(name = "id_solicitud_cotizacion", referencedColumnName = "id_solicitud_cotizacion")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private SolicitudCotizacionManual idSolicitudCotizacion;
-    @JoinColumn(name = "id_tipo_envio", referencedColumnName = "id_tipo_envio")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TipoEnvio idTipoEnvio;
+
+    @Column(name = "id_proveedor")
+    private Integer idProveedor;
+
+    @Column(name = "id_solicitud_cotizacion")
+    private Integer idSolicitudCotizacion;
+
+    @Column(name = "id_tipo_envio")
+    private Integer idTipoEnvio;
+
+    @Column(name = "id_estado_cotizacion")
+    private Integer idEstadoCotizacion;
 
     public Cotizacion() {
     }
@@ -88,35 +89,35 @@ public class Cotizacion implements Serializable {
         this.valor = valor;
     }
 
-    public EstadoCotizacion getIdEstadoCotizacion() {
+    public Integer getIdEstadoCotizacion() {
         return idEstadoCotizacion;
     }
 
-    public void setIdEstadoCotizacion(EstadoCotizacion idEstadoCotizacion) {
+    public void setIdEstadoCotizacion(Integer idEstadoCotizacion) {
         this.idEstadoCotizacion = idEstadoCotizacion;
     }
 
-    public Proveedor getIdProveedor() {
+    public Integer getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(Proveedor idProveedor) {
+    public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
-    public SolicitudCotizacionManual getIdSolicitudCotizacion() {
+    public Integer getIdSolicitudCotizacion() {
         return idSolicitudCotizacion;
     }
 
-    public void setIdSolicitudCotizacion(SolicitudCotizacionManual idSolicitudCotizacion) {
+    public void setIdSolicitudCotizacion(Integer idSolicitudCotizacion) {
         this.idSolicitudCotizacion = idSolicitudCotizacion;
     }
 
-    public TipoEnvio getIdTipoEnvio() {
+    public Integer getIdTipoEnvio() {
         return idTipoEnvio;
     }
 
-    public void setIdTipoEnvio(TipoEnvio idTipoEnvio) {
+    public void setIdTipoEnvio(Integer idTipoEnvio) {
         this.idTipoEnvio = idTipoEnvio;
     }
 
@@ -144,5 +145,5 @@ public class Cotizacion implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.Cotizacion[ idCotizacion=" + idCotizacion + " ]";
     }
-    
+
 }

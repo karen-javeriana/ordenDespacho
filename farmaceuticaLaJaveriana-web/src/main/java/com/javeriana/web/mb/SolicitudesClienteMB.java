@@ -5,7 +5,7 @@ package com.javeriana.web.mb;
 
 import com.javeriana.ejb.entidades.SolicitudCotizacionManual;
 import com.javeriana.ejb.enumerados.ESeveridadMensaje;
-import com.javeriana.ejb.service.impl.SolicitudCotizacionSBLocal;
+import com.javeriana.ejb.service.SolicitudCotizacionSBLocal;
 import com.javeriana.web.utilidades.Util;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
