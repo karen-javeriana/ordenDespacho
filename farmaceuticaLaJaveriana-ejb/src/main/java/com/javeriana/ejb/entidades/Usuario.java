@@ -23,6 +23,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Entidad de usuario
  *
  * @author Asus
  */
@@ -43,23 +44,26 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_usuario")
     private Integer idUsuario;
+
     @Size(max = 15)
     @Column(name = "usuario")
     private String usuario;
+
     @Size(max = 10)
     @Column(name = "contrasena")
     private String contrasena;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 9)
     @Column(name = "tipo_usuario")
     private String tipoUsuario;
-    @JoinColumn(name = "numero_documento_cliente", referencedColumnName = "numero_documento")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Cliente numeroDocumentoCliente;
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Proveedor idProveedor;
+
+    @Column(name = "numero_documento_cliente")
+    private String numeroDocumentoCliente;
+
+    @Column(name = "id_proveedor")
+    private String idProveedor;
 
     public Usuario() {
     }
@@ -105,19 +109,19 @@ public class Usuario implements Serializable {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Cliente getNumeroDocumentoCliente() {
+    public String getNumeroDocumentoCliente() {
         return numeroDocumentoCliente;
     }
 
-    public void setNumeroDocumentoCliente(Cliente numeroDocumentoCliente) {
+    public void setNumeroDocumentoCliente(String numeroDocumentoCliente) {
         this.numeroDocumentoCliente = numeroDocumentoCliente;
     }
 
-    public Proveedor getIdProveedor() {
+    public String getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(Proveedor idProveedor) {
+    public void setIdProveedor(String idProveedor) {
         this.idProveedor = idProveedor;
     }
 
@@ -145,5 +149,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-    
+
 }

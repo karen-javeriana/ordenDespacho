@@ -8,6 +8,7 @@ package com.javeriana.ejb.service.impl;
 import com.javeriana.ejb.dao.impl.ISolicitudCotizacionDao;
 import com.javeriana.ejb.entidades.SolicitudCotizacionManual;
 import com.javeriana.ejb.service.SolicitudCotizacionSBLocal;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -27,8 +28,8 @@ public class SolicitudesCotizacionSB implements SolicitudCotizacionSBLocal {
     private ISolicitudCotizacionDao solicitudCotizacionDao;
 
     @Override
-    public List<SolicitudCotizacionManual> getFilterByDate() throws Exception {
-        return solicitudCotizacionDao.getFilterByDate();
+    public List<SolicitudCotizacionManual> consultarPorTodosFiltros(String numeroOrden, Date fechaInicio, Date fechaFin) throws Exception {
+        return solicitudCotizacionDao.consultarPorTodosFiltros(numeroOrden, fechaInicio, fechaFin);
     }
 
 }

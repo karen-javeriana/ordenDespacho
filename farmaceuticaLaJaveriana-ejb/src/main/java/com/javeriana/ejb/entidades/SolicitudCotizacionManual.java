@@ -33,18 +33,22 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "solicitud_cotizacion")
 @NamedQueries({
-    @NamedQuery(name = "SolicitudCotizacionManual.getFilterByDate",
+    @NamedQuery(name = "SolicitudCotizacionManual.getFilterAll",
             query = "SELECT log FROM SolicitudCotizacionManual log ")
     ,
-   @NamedQuery(name = "SolicitudCotizacionManual.getFilterByDateAndId",
+   @NamedQuery(name = "SolicitudCotizacionManual.getFilterByDateAndNumeroOrden",
             query = "SELECT log FROM SolicitudCotizacionManual log "
             + " WHERE log.fechaCreacion BETWEEN :fechaInicio and :fechaFin "
-            + "AND log.id = :id ")
+            + "AND log.numeroOrden = :numeroOrden ")
     ,   
    
-   @NamedQuery(name = "SolicitudCotizacionManual.getById",
+   @NamedQuery(name = "SolicitudCotizacionManual.getByNumeroOrden",
             query = "SELECT log FROM SolicitudCotizacionManual log "
-            + "WHERE log.id = :id ")
+            + "WHERE log.numeroOrden = :numeroOrden ")
+    ,
+   @NamedQuery(name = "SolicitudCotizacionManual.getByRangoFechas",
+            query = "SELECT log FROM SolicitudCotizacionManual log "
+            + "WHERE log.fechaCreacion BETWEEN :fechaInicio and :fechaFin ")
 
 })
 public class SolicitudCotizacionManual implements Serializable {

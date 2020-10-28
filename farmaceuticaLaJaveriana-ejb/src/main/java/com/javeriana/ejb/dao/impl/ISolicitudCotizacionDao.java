@@ -17,9 +17,6 @@ public interface ISolicitudCotizacionDao {
 
     void crear(SolicitudCotizacionManual solicitudCotizacion) throws Exception;
 
-    List<SolicitudCotizacionManual> getFilterByDate() throws Exception;
+    List<SolicitudCotizacionManual> consultarPorTodosFiltros(String numeroOrden, Date fechaInicio, Date fechaFin) throws Exception;
 
-    List<SolicitudCotizacionManual> getFilterByDateAndId(Long id, Date fechaInicio, Date fechaFin) throws Exception;
-
-    SolicitudCotizacionManual getFilterById(Long id) throws Exception;
 }

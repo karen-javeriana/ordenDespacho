@@ -6,6 +6,7 @@
 package com.javeriana.ejb.service;
 
 import com.javeriana.ejb.entidades.SolicitudCotizacionManual;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.LocalBean;
 
@@ -16,6 +17,7 @@ import javax.ejb.LocalBean;
 @LocalBean
 public interface SolicitudCotizacionSBLocal {
 
-    public List<SolicitudCotizacionManual> getFilterByDate() throws Exception;
-
+    public List<SolicitudCotizacionManual> consultarPorTodosFiltros(String numeroOrden, Date fechaInicio, Date fechaFin) throws Exception;
+    
+    
 }

@@ -16,32 +16,26 @@
             <h:panelGroup layout="block" class="col-12 no-padding mdl-grid justify-content-center">
 
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--2-col-phone" >
-                    <h:outputLabel value="id Solicitud" styleClass="font-size-14p font-bold form-control-label"/>
-                    <h:inputText  autocomplete="off" pt:onpaste="return false" 
-                                  onkeypress="return soloNumerosCondicion(event)" styleClass="font-size-14p form-control margin-t-2p"  />
+                    <h:outputLabel value="número orden" styleClass="font-size-14p font-bold form-control-label"/>
+                    <h:inputText  autocomplete="off" pt:onpaste="return false" value="#{solicitudesClienteMB.numeroOrden}"
+                                  styleClass="font-size-14p form-control margin-t-2p"  />
                 </div>
-
 
             </h:panelGroup>
             <h:panelGroup layout="block" class="col-12 no-padding mdl-grid justify-content-center">
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--2-col-phone" >
                     <h:outputLabel value="Fecha Inicio" styleClass="font-size-14p font-bold form-control-label" />
                     <br></br>
-                    <p:inputText   autocomplete="off" pt:onpaste="return false"  id="datepickerIni"
+                    <p:inputText  value="#{solicitudesClienteMB.fechaInicioString}" autocomplete="off" pt:onpaste="return false"  id="datepickerIni"
                                   styleClass="font-size-14p form-control margin-t-2p" style="width: 85%;">
                     </p:inputText>
-
-
                 </div>
-
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--2-col-phone" >
                     <h:outputLabel value="Fecha Fin" styleClass="font-size-14p font-bold form-control-label" />
                     <br></br>
-                    <p:inputText   autocomplete="off" pt:onpaste="return false"  id="datepickerFin"
+                    <p:inputText  value="#{solicitudesClienteMB.fechaFinString}" autocomplete="off" pt:onpaste="return false"  id="datepickerFin"
                                   styleClass="font-size-14p form-control margin-t-2p" style="width: 85%;">
                     </p:inputText>
-
-
                 </div>
             </h:panelGroup>
             <!-- FOOTER BUTTONS ACTIONS -->
@@ -51,6 +45,12 @@
                     <a href="#" onclick="pulsarClickPorId('btnLimpiar')" class="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white w100 text-shadow text-responsive btn-back-gray max-width-btn">
                         <i class="material-icons">clear</i>Limpiar
                     </a>
+                    <h:commandButton id="btnBuscar" styleClass="displayNone">
+                        <f:ajax event="click" 
+                                render="btnBuscar panelGroupConsultarLogAuditoria" 
+                                execute="@form"
+                                listener="#{solicitudesClienteMB.enviarConsulta()}" />
+                    </h:commandButton>
                     <a href="#" onclick="pulsarClickPorId('btnBuscar')" class="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white w100 text-shadow text-responsive btn-red max-width-btn">
                         <i class="material-icons">search</i>Consultar
                     </a>
@@ -58,47 +58,41 @@
             </h:panelGroup>
             <!-- TABLE -->
             <h:panelGroup id="panelGroupConsultarLogAuditoria" layout="block" class="mdl-grid">
-                <h:panelGroup layout="block"  id="panelExterno"  styleClass="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center table-content">
+                <h:panelGroup layout="block"  id="panelExterno" rendered="#{solicitudesClienteMB.listSolicitudesCliente != null}" styleClass="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center table-content">
                     <h:panelGroup layout="block" styleClass="table-responsive table--no-card m-b-30">
-                        <p:remoteCommand name="onload" oncomplete="PF('tablaConsulta').clearFilters()" autoRun="true" />
                         <center>
 
                             <p:dataTable class="table-bordered indexarContenido" id="tablaInteraccionesCliente" 
+                                         value="#{solicitudesClienteMB.listSolicitudesCliente}"
                                          var="Log"
                                          paginator="true" widgetVar="tablaConsulta"
                                          rowsPerPageTemplate="25,50,100,150" pageLinks="25" rows="25"
                                          emptyMessage="No se encontraron registros"
                                          styleClass="table table-borderless table-striped table-earning" style="width: 95%;">
-                                <f:facet name="header">
-                                    <div class="ui-g"> 
-                                        <div class="ui-g-9" style="text-align: left;">
-                                            <h:outputLabel styleClass="font-size-14p font-bold" value=" ">
-                                            </h:outputLabel></div>
-                                        <div class="ui-g-3">
-                                            <p:outputPanel>
-                                                <p:spacer></p:spacer>
-                                                <h:outputLabel styleClass="font-size-12p font-bold" value=" ">&nbsp;&nbsp;&nbsp;&nbsp;<span class="font-size-12p font-bold">Filtrar &nbsp;</span>
-                                                </h:outputLabel>
-                                                <p:inputText id="globalFilter" autocomplete="off"
-                                                             onkeyup="PF('tablaConsulta').filter()"
-                                                             styleClass="font-size-11p filtro filter-table" style="height: 20px; width:120px; background: white !important; color: black !important" maxlength="150"/>
-                                            </p:outputPanel>
-                                        </div>
-                                    </div>
-                                </f:facet>
-                                <p:column styleClass="textLeft" style="width: 5%;vertical-align: text-top;" headerText="Id" filterMatchMode="contains" filterBy="#{Log.id}">
-                                    <h:outputText />
+
+                                <p:column styleClass="textLeft" style="width: 5%;vertical-align: text-top;" headerText="Id Solicitud">
+                                    <h:outputText value="#{Log.id}"/>
                                 </p:column>
-
-                               
-                                <p:column styleClass="textLeft" style="width: 15%;vertical-align: text-top;" headerText="Servicio" filterMatchMode="contains" filterBy="#{Log.nombreServicio}">
-                                    <h:outputText />
+                                <p:column styleClass="textLeft" style="width: 15%;vertical-align: text-top;" headerText="Número orden">
+                                    <h:outputText value="#{Log.numeroOrden}"/>
                                 </p:column> 
-                                
-
+                                <p:column styleClass="textLeft" style="width: 15%;vertical-align: text-top;" headerText="Peso">
+                                    <h:outputText value="#{Log.peso}"/>
+                                </p:column> 
+                                <p:column styleClass="textLeft" style="width: 15%;vertical-align: text-top;" headerText="Codigo Ciudad Origen">
+                                    <h:outputText value="#{Log.codigoCiudadOrigen}"/>
+                                </p:column>
+                                <p:column styleClass="textLeft" style="width: 15%;vertical-align: text-top;" headerText="Codigo Ciudad Destino">
+                                </p:column> 
+                                <p:column styleClass="textLeft" style="width: 15%;vertical-align: text-top;" headerText="Dirección">
+                                    <h:outputText value="#{Log.direccion}"/>
+                                </p:column>
+                                <p:column styleClass="textLeft" style="width: 15%;vertical-align: text-top;" headerText="Fecha Creación">
+                                    <h:outputText value="#{Log.fechaCreacion}"/>
+                                </p:column>
                                 <p:column style="width: 5%;vertical-align: text-top;" styleClass="text-center">                                
                                     <h:commandButton id="btnEditar"  styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect btnIconTabla" 
-                                                      title="Detalle" >
+                                                     title="Detalle" >
                                         <i class="material-icons iconTabla" style="margin-left: -17px;">pageview</i>                                        
                                     </h:commandButton>
                                 </p:column>

@@ -7248,7 +7248,7 @@ function Datepicker() {
 		showMonthAfterYear: false, // True if the year select precedes month, false for month then year
 		yearSuffix: "" ,// Additional text to append to the year in the month headers
                 showOn: "button",
-               buttonImage: "/farmaceuticaLaJaveriana-web/javax.faces.resource/images/calendar.gif.xhtml",
+                buttonImage: "/farmaceuticaLaJaveriana-web/javax.faces.resource/images/calendar.gif",
                 buttonImageOnly: true,
                 maxDate: 0
 	};

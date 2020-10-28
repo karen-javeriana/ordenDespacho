@@ -50,9 +50,28 @@
                                             <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="Tipo de usuario:" />
                                             <h:inputSecret class="mdl-textfield__input text-responsive"  id="password"/>
                                         </div>
+                                        <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+                                            <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="TIPO USUARIO:" />
+                                            <h:selectOneMenu value="#{sesionMB.tipoUsuario}" style="width: 100%;"
+                                                             styleClass="max-width-combo font-size-14p form-control">
+                                                <f:selectItem itemLabel="-- Seleccione --" itemValue="#{null}" noSelectionOption="true"/>
+                                                <f:selectItems 
+                                                    value="#{sesionMB.listTiposUsuarios}"
+                                                    var="servicio"
+                                                    itemValue="#{servicio.nombre}"
+                                                    itemLabel="#{servicio.nombre}"/>
+                                            </h:selectOneMenu>
+                                            <h:message styleClass="mensajeValidacion" for="servicio" />
+                                        </div>
                                         <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
                                             <h:commandButton id="login-button" value="Guardar" style="min-width: 300px"
                                                              styleClass="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white text-shadow text-responsive btn-red">
+                                            </h:commandButton>
+
+                                        </div>
+                                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
+                                            <h:commandButton id="login-button" value="Cancelar" style="min-width: 300px"  action="#{sesionMB.cancelarRegistro()}"
+                                                             styleClass="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white text-shadow text-responsive btn-back-gray">
                                             </h:commandButton>
 
                                         </div>

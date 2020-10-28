@@ -8,6 +8,10 @@ import com.javeriana.ejb.enumerados.ESeveridadMensaje;
 import com.javeriana.ejb.service.SolicitudCotizacionSBLocal;
 import com.javeriana.web.utilidades.Util;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -22,149 +26,79 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class SolicitudesClienteMB extends BaseMB<SolicitudCotizacionManual> implements Serializable {
 
-    //private ILogAuditoriaDao logAuditoriaDao;
-    //private List<LogAuditoria> showTableLogAuditoria;
-    //  private List<LogAuditoria> showTableLogAuditoriaFilter;
-    private String servicio;
-
+    private SolicitudCotizacionManual objetoEntidad;
+    private List<SolicitudCotizacionManual> listSolicitudesCliente;
+    private Date fechaInicio;
+    private Date fechaFin;
+    private String numeroOrden;
     private String fase;
+    private String fechaInicioString;
+    private String fechaFinString;
 
     @EJB(beanName = "BeanNameSolicitudesSB")
     private SolicitudCotizacionSBLocal solicitudSBLocal;
 
-    private final String pattern_DD_MM_YYY_HH_MM_AAA = "dd/MM/yyyy  hh:mm aaa";
+    private final String pattern_DD_MM_YYY_HH_MM_AAA = "dd/MM/yyyy  hh:mm";
     private final String pattern_DD_MM_YY = "dd/MM/yyyy";
-    private static final String CONSULTAR_LOG = "CONSULTAR_LOG_CRUD";
 
     @PostConstruct
     public void init() {
         try {
-            //setPhase(EFase.QUERY);
-            //setObject(new LogAuditoria());
-            this.servicio = null;
+            this.objetoEntidad = new SolicitudCotizacionManual();
             this.fase = "query";
         } catch (Exception ex) {
-            //Util.showModalError(ex, MODULO);
+            System.err.println(ex);
         }
     }
 
-    public void enviarCancelar() {
+    public void enviarCancelar() throws Exception {
 //        processBefore();
-//
-//        this.servicio = null;
-//        init();
-//        limpiar();
+
+        limpiar();
     }
 
-//    public void enviarConsulta(LogAuditoria log) {
-//        try {
-//            processEdit(log);
-//            PrimeFaces.current().executeScript("setActiveTab('nav-detalle-tab')");
-//
-//            if (log.getResponse() != null) {
-//                response = formatearJson(dataFileDao.getByID(log.getResponse()).getDataFile());
-//            }
-//            if (log.getRequest() != null) {
-//                request = formatearJson(dataFileDao.getByID(log.getRequest()).getDataFile());
-//            }
-//            if (log.getError() != null) {
-//                error = formatearJson(log.getError());
-//            }
-//
-//        } catch (Exception ex) {
-//            Util.showModalError(ex, MODULO);
-//        }
-//    }
     /**
-     * envia a la pantalla de creación
+     * Metodo que ejecuta la accion de consultar, basado en los filtros
+     *
      */
-    public void enviarCrear() {
-//        Util.guardarNotificacionUsuarioSesion(null, Util.getSeveridadMensaje(ESeveridadMensaje.DEFAULT));
-//        Util.guardarNotificacionUsuarioSesion(null, Util.getSeveridadMensaje(ESeveridadMensaje.DEFAULT));
-//        processCreate();
-//        setObject(new LogAuditoria());
+    public void enviarConsulta() {
+        try {
+            Date fechaInicioConv = null;
+            Date fechaFinConv = null;
+            if (fechaInicioString != null && !fechaInicioString.isEmpty()) {
+                fechaInicioConv = new SimpleDateFormat(pattern_DD_MM_YYY_HH_MM_AAA).parse(fechaInicioString);
+            }
+            if (fechaFinString != null && !fechaFinString.isEmpty()) {
+                fechaFinConv = new SimpleDateFormat(pattern_DD_MM_YYY_HH_MM_AAA).parse(fechaFinString);
+            }
+            listSolicitudesCliente = solicitudSBLocal.consultarPorTodosFiltros(numeroOrden, fechaInicioConv, fechaFinConv);
+            Util.guardarNotificacionUsuarioSesion(null, Util.getSeveridadMensaje(ESeveridadMensaje.DEFAULT));
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
     }
 
-//    public void buscarLogAuditoria() {
-//        try {
-//            showTableLogAuditoriaFilter = null;
-//            String diasParaConsultar = parametrizacionSB.getValorParametrizacion(CONSULTAR_LOG);
-//            this.fechaDesde = null;
-//            this.fechaHasta = null;
-//            boolean validDate = true;
-//
-//            try {
-//                if (fechaDesdeStr != null && !fechaDesdeStr.equals("")) {
-//                    fechaDesde = this.getDateFromString(fechaDesdeStr, ConstantesGenerales.FORMATO_FECHA_SLASH_DD_MM_YYYY_HH_MM);
-//                }
-//                if (fechaHastaStr != null && !fechaHastaStr.equals("")) {
-//                    fechaHasta = this.getDateFromString(fechaHastaStr, ConstantesGenerales.FORMATO_FECHA_SLASH_DD_MM_YYYY_HH_MM);
-//                }
-//            } catch (ParseException ex) {
-//                validDate = false;
-//            }
-//
-//            if (funcion != null && funcion.trim().isEmpty()) {
-//                funcion = null;
-//            }
-//            if (servicio != null && servicio.trim().isEmpty()) {
-//                servicio = null;
-//            }
-//
-//            if (!validDate) {
-//                PrimeFaces.current().executeScript("mostrarToast('Es necesario diligenciar fechas y horas validas');");
-//            } else if (idFront == null && fechaDesde == null && fechaHasta == null && funcion == null && servicio == null && funcion == null && servicio == null) {
-//                PrimeFaces.current().executeScript("mostrarToast('Es necesario diligenciar algún campo para poder consultar');");
-//            } else if (fechaDesde == null && fechaHasta != null) {
-//                PrimeFaces.current().executeScript("mostrarToast('Es necesario diligenciar el campo de Fecha Inicio');");
-//            } else if (fechaDesde != null && fechaHasta == null) {
-//                PrimeFaces.current().executeScript("mostrarToast('Es necesario diligenciar el campo de Fecha Fin');");
-//            } else {
-//                boolean valid = true;
-//                if (fechaDesde != null && fechaHasta != null) {
-//                    long diffDays = ChronoUnit.DAYS.between(getLocalDate(fechaDesde), getLocalDate(fechaHasta));
-//
-//                    String inicio = new SimpleDateFormat(pattern_DD_MM_YY).format(fechaDesde);
-//                    String fin = new SimpleDateFormat(pattern_DD_MM_YY).format(fechaHasta);
-//
-//                    if (fechaDesde.after(new Date())) {
-//                        valid = false;
-//                        PrimeFaces.current().executeScript("mostrarToast('Recuerda que la Fecha de Inicio no puede ser superior a la Fecha Actual ');");
-//                    } else if (fechaHasta.after(new Date())) {
-//                        valid = false;
-//                        PrimeFaces.current().executeScript("mostrarToast('Recuerda que la Fecha Fin no puede ser superior a la Fecha Actual ');");
-//                    } else if (!inicio.equals(fin) && !fechaHasta.after(fechaDesde)) {
-//                        valid = false;
-//                        PrimeFaces.current().executeScript("mostrarToast('Recuerda que la Fecha de Inicio debe ser menor o igual "
-//                                + "a la Fecha de Fin, de lo contrario no se podrá realizar la busqueda ');");
-//                    } else if (diasParaConsultar != null && diffDays > Long.parseLong(diasParaConsultar)) {
-//                        valid = false;
-//                        PrimeFaces.current().executeScript(String.format("mostrarToast('No es posible consultar más de %s días');", diasParaConsultar));
-//                    }
-//                }
-//                if (valid) {
-//                    showTableLogAuditoria = logAuditoriaDao.getFilterByfields(fechaDesde, fechaHasta, idFront, funcion, servicio);
-//                }
-//            }
-//            Util.guardarNotificacionUsuarioSesion(null, Util.getSeveridadMensaje(ESeveridadMensaje.DEFAULT));
-//        } catch (Exception ex) {
-//            Util.showModalError(ex, MODULO);
-//        }
-//    }
+    /**
+     * Metodo que filtra los campos de busqueda
+     *
+     * @throws Exception
+     */
     public void limpiar() throws Exception {
-        Util.guardarNotificacionUsuarioSesion(null, Util.getSeveridadMensaje(ESeveridadMensaje.DEFAULT));
-        solicitudSBLocal.getFilterByDate();
-        this.servicio = null;
-        //showTableLogAuditoria = null;
-        // setObject(new LogAuditoria());
+        objetoEntidad = new SolicitudCotizacionManual();
+        this.numeroOrden = null;
+        this.fechaFin = null;
+        this.fechaInicio = null;
+        this.fechaFinString = null;
+        this.fechaInicioString = null;
+        listSolicitudesCliente = new ArrayList<>();
     }
 
-    public String getServicio() {
-        return servicio;
+    public SolicitudCotizacionSBLocal getSolicitudSBLocal() {
+        return solicitudSBLocal;
     }
 
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
+    public void setSolicitudSBLocal(SolicitudCotizacionSBLocal solicitudSBLocal) {
+        this.solicitudSBLocal = solicitudSBLocal;
     }
 
     public String getFase() {
@@ -173,6 +107,62 @@ public class SolicitudesClienteMB extends BaseMB<SolicitudCotizacionManual> impl
 
     public void setFase(String fase) {
         this.fase = fase;
+    }
+
+    public SolicitudCotizacionManual getObjetoEntidad() {
+        return objetoEntidad;
+    }
+
+    public void setObjetoEntidad(SolicitudCotizacionManual objetoEntidad) {
+        this.objetoEntidad = objetoEntidad;
+    }
+
+    public List<SolicitudCotizacionManual> getListSolicitudesCliente() {
+        return listSolicitudesCliente;
+    }
+
+    public void setListSolicitudesCliente(List<SolicitudCotizacionManual> listSolicitudesCliente) {
+        this.listSolicitudesCliente = listSolicitudesCliente;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public String getNumeroOrden() {
+        return numeroOrden;
+    }
+
+    public void setNumeroOrden(String numeroOrden) {
+        this.numeroOrden = numeroOrden;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public String getFechaInicioString() {
+        return fechaInicioString;
+    }
+
+    public void setFechaInicioString(String fechaInicioString) {
+        this.fechaInicioString = fechaInicioString;
+    }
+
+    public String getFechaFinString() {
+        return fechaFinString;
+    }
+
+    public void setFechaFinString(String fechaFinString) {
+        this.fechaFinString = fechaFinString;
     }
 
     @Override

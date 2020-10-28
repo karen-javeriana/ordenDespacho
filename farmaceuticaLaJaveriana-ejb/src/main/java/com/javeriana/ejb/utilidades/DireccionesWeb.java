@@ -15,6 +15,8 @@ public class DireccionesWeb {
     public static final String INICIO = "/dashboard/pantallaInicioUsuarios.xhtml";
     public static final String ERROR_403 = "/pages/error/403.xhtml";
     public static final String ERROR_500 = "/pages/error/500.xhtml";
+    public static final String REGISTRO = "/registroUsuarios/registroUsuariosCrear.xhtml";
+    
 
     private DireccionesWeb() {
         throw new AssertionError();

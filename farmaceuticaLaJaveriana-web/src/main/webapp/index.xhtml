@@ -5,7 +5,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="/template/homeTemplateLogin.xhtml" >
+                template="/template/homeTemplateLogin.xhtml" 
+                xmlns:p="http://primefaces.org/ui">
     <ui:define name="content">
         <div id="blurL3"></div>
         <div id="login-container3" class="no-margin mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
@@ -55,12 +56,12 @@
                                         <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
                                             <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="USUARIO:"/>
                                             <h:inputText class="mdl-textfield__input text-responsive" id="username"
-                                                         value="#{sesionMB.usuarioLogin}"/>
+                                                         value="#{sesionMB.usuarioDto.usuario}"/>
                                         </div>
                                         <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
                                             <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="PASSWORD:" />
                                             <h:inputSecret class="mdl-textfield__input text-responsive"  id="password" 
-                                                           value="#{sesionMB.passLogin}"/>
+                                                           value="#{sesionMB.usuarioDto.password}"/>
                                             <label>
                                                 <input id="show_password" type="checkbox" >
                                                     <h:graphicImage id="iconPassView" styleClass="image-login" library="images" name="icons-SVG/icon60.svg"/>
@@ -68,13 +69,30 @@
                                                 </input> 
                                             </label>
                                         </div>
+                                        <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+                                            <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="TIPO USUARIO:" />
+                                            <h:selectOneMenu value="#{sesionMB.tipoUsuario}" style="width: 100%;"
+                                                             styleClass="max-width-combo font-size-14p form-control">
+                                                <f:selectItem itemLabel="-- Seleccione --" itemValue="#{null}" noSelectionOption="true"/>
+                                                <f:selectItems 
+                                                    value="#{sesionMB.listTiposUsuarios}"
+                                                    var="servicio"
+                                                    itemValue="#{servicio.nombre}"
+                                                    itemLabel="#{servicio.nombre}"/>
+                                            </h:selectOneMenu>
+                                            <h:message styleClass="mensajeValidacion" for="servicio" />
+                                        </div>
+
                                         <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
                                             <h:commandButton id="login-button" value="Ingresar" style="min-width: 300px"
                                                              styleClass="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white text-shadow text-responsive btn-red"                                             
                                                              action="#{sesionMB.iniciarSesion()}">
                                             </h:commandButton>
+
                                             <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="¿Aún no tienes cuenta?" />
-                                            <a href="https://www.w3schools.com" style="font-size: 12px;color:#000099;">Registrate Aquí</a>
+                                            <p:commandLink id="nonAjax" style="font-size: 12px;color:#000099;" action="#{sesionMB.registrarUsuario()}" ajax="false">
+                                                <h:outputText value="¡Registrate Aquí!" />
+                                            </p:commandLink> 
                                         </div>
                                     </div>
                                 </div>
