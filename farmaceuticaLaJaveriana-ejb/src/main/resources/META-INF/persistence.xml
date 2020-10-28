@@ -5,6 +5,12 @@
     <class>com.javeriana.ejb.entidades.SolicitudCotizacion</class>
     <class>com.javeriana.ejb.entidades.SolicitudCotizacionManual</class>
     <class>com.javeriana.ejb.entidades.Cotizacion</class>
+    <class>com.javeriana.ejb.entidades.Usuario</class>
+    <class>com.javeriana.ejb.entidades.Ciudad</class>
+    <class>com.javeriana.ejb.entidades.Cliente</class>
+    <class>com.javeriana.ejb.entidades.Proveedor</class>
+    <class>com.javeriana.ejb.entidades.Departamento</class>
+    <class>com.javeriana.ejb.entidades.CatalogoServicio</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
   </persistence-unit>

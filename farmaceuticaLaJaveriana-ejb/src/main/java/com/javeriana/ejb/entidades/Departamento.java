@@ -49,8 +49,6 @@ public class Departamento implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDepartamento", fetch = FetchType.LAZY)
-    private List<Ciudad> ciudadList;
 
     public Departamento() {
     }
@@ -80,16 +78,6 @@ public class Departamento implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<Ciudad> getCiudadList() {
-        return ciudadList;
-    }
-
-    public void setCiudadList(List<Ciudad> ciudadList) {
-        this.ciudadList = ciudadList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,5 +102,5 @@ public class Departamento implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.Departamento[ idDepartamento=" + idDepartamento + " ]";
     }
-    
+
 }

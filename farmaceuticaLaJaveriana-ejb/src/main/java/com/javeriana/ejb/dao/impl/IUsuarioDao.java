@@ -16,4 +16,6 @@ public interface IUsuarioDao {
 
     void crear(Usuario usuario) throws Exception;
 
+    Usuario consultarUsuario(String usuario, String password) throws Exception;
+
 }

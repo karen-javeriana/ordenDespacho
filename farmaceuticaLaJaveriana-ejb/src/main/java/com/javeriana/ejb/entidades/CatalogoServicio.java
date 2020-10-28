@@ -55,9 +55,9 @@ public class CatalogoServicio implements Serializable {
     private Float valorPesoExtra;
     @Column(name = "valor_kilo_inicial")
     private Float valorKiloInicial;
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Proveedor idProveedor;
+
+    @Column(name = "id_proveedor")
+    private Integer idProveedor;
 
     public CatalogoServicio() {
     }
@@ -114,11 +114,11 @@ public class CatalogoServicio implements Serializable {
         this.valorKiloInicial = valorKiloInicial;
     }
 
-    public Proveedor getIdProveedor() {
+    public Integer getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(Proveedor idProveedor) {
+    public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
@@ -146,5 +146,5 @@ public class CatalogoServicio implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.CatalogoServicio[ idCatalogoServicio=" + idCatalogoServicio + " ]";
     }
-    
+
 }

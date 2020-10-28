@@ -64,7 +64,7 @@ public class SolicitudCotizacionDao extends AbstractDao<SolicitudCotizacionManua
                         .setParameter("fechaInicio", fechaInicio)
                         .setParameter("fechaFin", fechaFin).getResultList();
             }
-            if (numeroOrden == null && numeroOrden.isEmpty() && fechaFin == null && fechaInicio == null) {
+            if ((numeroOrden == null || numeroOrden.isEmpty()) && fechaFin == null && fechaInicio == null) {
                 resultado = em.createNamedQuery("SolicitudCotizacionManual.getFilterAll", SolicitudCotizacionManual.class).getResultList();
             }
         } catch (Exception ex) {

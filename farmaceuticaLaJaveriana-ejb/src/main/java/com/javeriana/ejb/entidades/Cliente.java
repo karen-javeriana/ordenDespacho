@@ -86,13 +86,9 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "direccion")
     private String direccion;
-    @JoinColumn(name = "codigo_ciudad", referencedColumnName = "codigo_ciudad")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Ciudad codigoCiudad;
-    @OneToMany(mappedBy = "numeroDocumentoCliente", fetch = FetchType.LAZY)
-    private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numeroDocumentoCliente", fetch = FetchType.LAZY)
-    private List<SolicitudCotizacionManual> solicitudCotizacionList;
+
+    @Column(name = "codigo_ciudad")
+    private String codigoCiudad;
 
     public Cliente() {
     }
@@ -182,34 +178,6 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
     }
 
-    public Ciudad getCodigoCiudad() {
-        return codigoCiudad;
-    }
-
-    public void setCodigoCiudad(Ciudad codigoCiudad) {
-        this.codigoCiudad = codigoCiudad;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public List<SolicitudCotizacionManual> getSolicitudCotizacionList() {
-        return solicitudCotizacionList;
-    }
-
-    public void setSolicitudCotizacionList(List<SolicitudCotizacionManual> solicitudCotizacionList) {
-        this.solicitudCotizacionList = solicitudCotizacionList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -234,5 +202,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.Cliente[ numeroDocumento=" + numeroDocumento + " ]";
     }
-    
+
 }

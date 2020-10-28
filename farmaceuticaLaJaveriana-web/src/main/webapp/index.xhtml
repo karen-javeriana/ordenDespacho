@@ -55,13 +55,15 @@
                                         </div>
                                         <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
                                             <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="USUARIO:"/>
-                                            <h:inputText class="mdl-textfield__input text-responsive" id="username"
+                                            <h:inputText class="mdl-textfield__input text-responsive" id="username" required="true"
                                                          value="#{sesionMB.usuarioDto.usuario}"/>
+                                            <h:message styleClass="mensajeValidacion" for="username" />
                                         </div>
                                         <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
                                             <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="PASSWORD:" />
-                                            <h:inputSecret class="mdl-textfield__input text-responsive"  id="password" 
+                                            <h:inputSecret class="mdl-textfield__input text-responsive"  id="password"  required="true"
                                                            value="#{sesionMB.usuarioDto.password}"/>
+                                            <h:message styleClass="mensajeValidacion" for="password" />
                                             <label>
                                                 <input id="show_password" type="checkbox" >
                                                     <h:graphicImage id="iconPassView" styleClass="image-login" library="images" name="icons-SVG/icon60.svg"/>
@@ -69,20 +71,6 @@
                                                 </input> 
                                             </label>
                                         </div>
-                                        <div class="mdl-textfield w100 mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
-                                            <h:outputLabel styleClass="font-size-14p font-bold form-control-label" value="TIPO USUARIO:" />
-                                            <h:selectOneMenu value="#{sesionMB.tipoUsuario}" style="width: 100%;"
-                                                             styleClass="max-width-combo font-size-14p form-control">
-                                                <f:selectItem itemLabel="-- Seleccione --" itemValue="#{null}" noSelectionOption="true"/>
-                                                <f:selectItems 
-                                                    value="#{sesionMB.listTiposUsuarios}"
-                                                    var="servicio"
-                                                    itemValue="#{servicio.nombre}"
-                                                    itemLabel="#{servicio.nombre}"/>
-                                            </h:selectOneMenu>
-                                            <h:message styleClass="mensajeValidacion" for="servicio" />
-                                        </div>
-
                                         <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--8-col-phone text-center">
                                             <h:commandButton id="login-button" value="Ingresar" style="min-width: 300px"
                                                              styleClass="mdl-button mdl-js-button mdl-button--raised font-bold mdl-js-ripple-effect mdl-button--colored mdl-color-text--white text-shadow text-responsive btn-red"                                             

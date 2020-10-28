@@ -47,8 +47,6 @@ public class EstadoSolicitud implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "tipo_estado_solicitud")
     private String tipoEstadoSolicitud;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstadoSolicitud", fetch = FetchType.LAZY)
-    private List<SolicitudCotizacionManual> solicitudCotizacionList;
 
     public EstadoSolicitud() {
     }
@@ -78,16 +76,6 @@ public class EstadoSolicitud implements Serializable {
         this.tipoEstadoSolicitud = tipoEstadoSolicitud;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<SolicitudCotizacionManual> getSolicitudCotizacionList() {
-        return solicitudCotizacionList;
-    }
-
-    public void setSolicitudCotizacionList(List<SolicitudCotizacionManual> solicitudCotizacionList) {
-        this.solicitudCotizacionList = solicitudCotizacionList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -112,5 +100,5 @@ public class EstadoSolicitud implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.EstadoSolicitud[ idEstadoSolicitud=" + idEstadoSolicitud + " ]";
     }
-    
+
 }

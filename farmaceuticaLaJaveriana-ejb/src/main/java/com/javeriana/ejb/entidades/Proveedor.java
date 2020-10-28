@@ -77,12 +77,6 @@ public class Proveedor implements Serializable {
     @Size(max = 200)
     @Column(name = "direccion")
     private String direccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProveedor", fetch = FetchType.LAZY)
-    private List<CatalogoServicio> catalogoServicioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProveedor", fetch = FetchType.LAZY)
-    private List<Cotizacion> cotizacionList;
-    @OneToMany(mappedBy = "idProveedor", fetch = FetchType.LAZY)
-    private List<Usuario> usuarioList;
 
     public Proveedor() {
     }
@@ -169,36 +163,6 @@ public class Proveedor implements Serializable {
         this.direccion = direccion;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<CatalogoServicio> getCatalogoServicioList() {
-        return catalogoServicioList;
-    }
-
-    public void setCatalogoServicioList(List<CatalogoServicio> catalogoServicioList) {
-        this.catalogoServicioList = catalogoServicioList;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public List<Cotizacion> getCotizacionList() {
-        return cotizacionList;
-    }
-
-    public void setCotizacionList(List<Cotizacion> cotizacionList) {
-        this.cotizacionList = cotizacionList;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -223,5 +187,5 @@ public class Proveedor implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.Proveedor[ idProveedor=" + idProveedor + " ]";
     }
-    
+
 }

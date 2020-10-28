@@ -41,4 +41,21 @@ public class UsuarioDao extends AbstractDao<Usuario>
         super.crear(usuario);
 
     }
+
+    @Override
+    public Usuario consultarUsuario(String nombre, String password) throws Exception {
+
+        Usuario resultado = new Usuario();
+        try {
+            resultado = em.createNamedQuery("Usuario.findByUsuario", Usuario.class)
+                    .setParameter("usuario", nombre)
+                    .setParameter("contrasena", password).getSingleResult();
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return null;
+        }
+        return resultado;
+    }
+
 }

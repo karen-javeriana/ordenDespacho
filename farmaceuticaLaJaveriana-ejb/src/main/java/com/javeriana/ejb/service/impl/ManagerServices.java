@@ -18,13 +18,13 @@ import javax.ejb.Stateless;
  */
 @Stateless(name = "ManagerServices")
 public class ManagerServices {
-
+    
     @EJB(beanName = "BeanNameCotizacionDao")
     private ICotizacionDao cotizacionDao;
-
+    
     public CotizacionResponse saveSolicitudCotizacion(CotizacionRequest request) throws Exception {
         CotizacionResponse response = new CotizacionResponse();
-
+        
         try {
 
             // se guarda la cotizacion en la BD
@@ -35,14 +35,13 @@ public class ManagerServices {
             entidad.setNumeroCotizacion(Integer.valueOf(request.getNumeroCotizacion()));
             entidad.setValor(Float.valueOf(request.getValor()));
             entidad.setIdEstadoCotizacion(Integer.valueOf(request.getIdEstadoCotizacion()));
-
             cotizacionDao.crear(entidad);
-
+            
         } catch (Exception ex) {
-
+            
             System.err.println(ex);
         }
-
+        
         return response;
     }
 }

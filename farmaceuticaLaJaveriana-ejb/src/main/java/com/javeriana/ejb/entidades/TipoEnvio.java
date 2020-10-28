@@ -49,10 +49,6 @@ public class TipoEnvio implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoEnvio", fetch = FetchType.LAZY)
-    private List<Cotizacion> cotizacionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoEnvio", fetch = FetchType.LAZY)
-    private List<SolicitudCotizacionManual> solicitudCotizacionList;
 
     public TipoEnvio() {
     }
@@ -82,26 +78,6 @@ public class TipoEnvio implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<Cotizacion> getCotizacionList() {
-        return cotizacionList;
-    }
-
-    public void setCotizacionList(List<Cotizacion> cotizacionList) {
-        this.cotizacionList = cotizacionList;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public List<SolicitudCotizacionManual> getSolicitudCotizacionList() {
-        return solicitudCotizacionList;
-    }
-
-    public void setSolicitudCotizacionList(List<SolicitudCotizacionManual> solicitudCotizacionList) {
-        this.solicitudCotizacionList = solicitudCotizacionList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -126,5 +102,5 @@ public class TipoEnvio implements Serializable {
     public String toString() {
         return "com.javeriana.ejb.entidades.TipoEnvio[ idTipoEnvio=" + idTipoEnvio + " ]";
     }
-    
+
 }

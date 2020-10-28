@@ -5,6 +5,7 @@ package com.javeriana.web.mb;
 
 import com.javeriana.ejb.dao.impl.IUsuarioDao;
 import com.javeriana.ejb.dto.usuarioDto;
+import com.javeriana.ejb.entidades.Usuario;
 import com.javeriana.ejb.enumerados.ETipoNotificacion;
 import com.javeriana.ejb.enumerados.ETipoUsuario;
 import com.javeriana.ejb.utilidades.DireccionesWeb;
@@ -18,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import org.primefaces.PrimeFaces;
 
 /**
@@ -48,6 +50,8 @@ public class SesionMB implements Serializable {
 
     private usuarioDto usuarioDto;
 
+    private Usuario entidadUsuario;
+
     private ETipoNotificacion modalTypeNotificacion;
 
     private String tipoUsuario;
@@ -66,6 +70,7 @@ public class SesionMB implements Serializable {
         listTiposUsuarios = Arrays.asList(ETipoUsuario.values());
         this.existeCliente = false;
         usuarioDto = new usuarioDto();
+        entidadUsuario = new Usuario();
 
     }
 
@@ -77,31 +82,42 @@ public class SesionMB implements Serializable {
      */
     public String iniciarSesion() throws Exception {
 
-        if (usuarioDto.getUsuario().isEmpty() && usuarioDto.getPassword().isEmpty()) {
-            setMensajeWarning("Campo Usuario y Password obligatorios");
-            setModalTypeNotificacion(ETipoNotificacion.ALERTA);
-            PrimeFaces.current().executeScript("modalNotification()");
-        } else if (usuarioDto.getUsuario().isEmpty()) {
-            setMensajeWarning("Campo Usuario obligatorio");
-            setModalTypeNotificacion(ETipoNotificacion.ALERTA);
-            PrimeFaces.current().executeScript("modalNotification()");
-        } else if (usuarioDto.getPassword().isEmpty()) {
-            setMensajeWarning("Campo Password obligatorio");
-            setModalTypeNotificacion(ETipoNotificacion.ALERTA);
-            PrimeFaces.current().executeScript("modalNotification()");
-        } else {
+        Usuario usuarioSesion = usuarioDao.consultarUsuario(usuarioDto.getUsuario(), usuarioDto.getPassword());
 
+        if (usuarioSesion != null) {
             return DireccionesWeb.INICIO;
+        } else {
+            return "";
         }
-        return "";
     }
 
+    /**
+     * Metodo que me direcciona al formulario de registro de usuario
+     *
+     * @return @throws Exception
+     */
     public String registrarUsuario() throws Exception {
         return DireccionesWeb.REGISTRO;
     }
 
+    /**
+     * Metodo que invoca la accion de cancelar registro
+     *
+     * @return @throws Exception
+     */
     public String cancelarRegistro() throws Exception {
-        return DireccionesWeb.INICIO;
+        return DireccionesWeb.LOGIN;
+    }
+
+    /**
+     * Metodo que invoca el guardado el usuario en bd
+     *
+     * @return
+     * @throws Exception
+     */
+    public String guardarUsuario() throws Exception {
+        usuarioDao.crear(this.entidadUsuario);
+        return DireccionesWeb.LOGIN;
     }
 
     /**
@@ -199,6 +215,14 @@ public class SesionMB implements Serializable {
 
     public String getTipoUsuario() {
         return tipoUsuario;
+    }
+
+    public Usuario getEntidadUsuario() {
+        return entidadUsuario;
+    }
+
+    public void setEntidadUsuario(Usuario entidadUsuario) {
+        this.entidadUsuario = entidadUsuario;
     }
 
     public void setTipoUsuario(String tipoUsuario) {
