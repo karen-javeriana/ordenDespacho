@@ -39,4 +39,8 @@ public class MenuMB implements Serializable {
     public String irMenuCrud() {
         return "/pages/dashboard/inicio.xhtml?faces-redirect=true";
     }
+    
+    public String irSolicitudesRecibidas() {
+        return "/pages/proveedores/solcitudesRecibidasProveedorIncio.xhtml?faces-redirect=true";
+    }
 }
