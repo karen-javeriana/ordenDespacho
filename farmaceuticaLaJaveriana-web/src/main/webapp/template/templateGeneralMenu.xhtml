@@ -85,11 +85,12 @@
             <ul class="sidebar">
                 <li onclick="pulsarClickPorId('idSolicitudesCliente')"><h:graphicImage library="images" name="icons-SVG/icon49.svg" class="image-menu-lateral"/>Mis solicitudes</li>
                 <li onclick="pulsarClickPorId('idEstadisticas')"><h:graphicImage library="images" name="icons-SVG/icon52.svg" class="image-menu-lateral"/>Estadísticas</li>
-
+                <li onclick="pulsarClickPorId('idSolicitudesRecibidasProveedor')"><h:graphicImage library="images" name="icons-SVG/icon52.svg" class="image-menu-lateral"/>Solitictudes Recibidas</li>
                 <!--TODO Change rol and image for questions-->
 
                 <h:commandButton id="idSolicitudesCliente" value="Mis solicitudes" styleClass="displayNone" action="#{menuMB.irSolicitudesCotizaciones()}"/>
-                <h:commandButton id="idEstadisticas" value="Estadísticas" styleClass="displayNone" />
+                <h:commandButton id="idEstadisticas" value="Estadísticas" styleClass="displayNone" action="#{menuMB.irSolicitudesCotizaciones()}"/>
+                <h:commandButton id="idSolicitudesRecibidasProveedor" value="Solitictudes Recibidas" styleClass="displayNone" action="#{menuMB.irSolicitudesRecibidas()}"/>
                
             </ul>
 
